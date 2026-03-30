@@ -1,0 +1,18 @@
+# node modules (packages)
+node_modules/
+
+# environment variables (passwords, secrets)
+.env
+
+# logs
+logs
+*.log
+npm-debug.log*
+
+# system files
+.DS_Store
+Thumbs.db
+
+# build files
+dist/
+build/
