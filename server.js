@@ -9,6 +9,8 @@ const protect = require("./middlewares/auth.middleware");
 
 const authorize = require("./middlewares/role.middleware");
 
+const projectRoutes = require("./routes/project.routes");
+
 const app = express();
 
 app.use(express.json());
@@ -16,6 +18,8 @@ app.use(express.json());
 connectDB();
 
 app.use("/api/auth", authRoutes)
+
+app.use("/api/projects", projectRoutes);
 
 app.get ("/", (req, res)=>{
   res.send("API is working 🚀")
