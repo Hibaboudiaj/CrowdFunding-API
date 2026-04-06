@@ -32,7 +32,7 @@ const login = async (req, res) =>{
     }
     //check password
     const ismatch = await bcrypt.compare(password, user.password);
-    if (ismatch) {
+    if (!ismatch) {
       return res.status(400).json({ message: "Invalid password"});
     }
     //cretae token

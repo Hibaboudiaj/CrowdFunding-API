@@ -7,6 +7,8 @@ const authRoutes = require("./routes/auth.routes");
 
 const protect = require("./middlewares/auth.middleware");
 
+const authorize = require("./middlewares/role.middleware");
+
 const app = express();
 
 app.use(express.json());
@@ -21,6 +23,18 @@ app.get ("/", (req, res)=>{
 
 app.get("/api/test", protect, (req, res)=>{
   res.json({message:"You are authorized 🎉",user: req.user});
+});
+
+app.get("/api/admin", protect, authorize("admin"), (req, res) =>{
+  res.json({ message: "Welcome Admin 👑"})
+});
+
+app.get("/api/owner", protect, authorize("owner"), (req, res) => {
+  res.json({ message: "Welcome Owner 📁" });
+});
+
+app.get("/api/investor", protect, authorize("investor"), (req, res) => {
+  res.json({ message: "Welcome Investor 💰" });
 });
 
 app.listen(8000, () => {
