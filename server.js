@@ -11,6 +11,8 @@ const authorize = require("./middlewares/role.middleware");
 
 const projectRoutes = require("./routes/project.routes");
 
+const investmentRoutes = require("./routes/investment.routes");
+
 const app = express();
 
 app.use(express.json());
@@ -40,6 +42,8 @@ app.get("/api/owner", protect, authorize("owner"), (req, res) => {
 app.get("/api/investor", protect, authorize("investor"), (req, res) => {
   res.json({ message: "Welcome Investor 💰" });
 });
+
+app.use("/api/investments", investmentRoutes);
 
 app.listen(8000, () => {
   console.log("Server running on port http://localhost:8000 🚀"); 
